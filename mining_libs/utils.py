@@ -25,8 +25,16 @@ def set_hashing_algo(algo):
 				import ltc_scrypt
 			except:
 				raise Exception("Unable to load ltc_scrypt module.")
+		elif algo == "scryptn":
+			hashing_algo = 'scryptn'
+			minimal_target = 0x0000ffff00000000000000000000000000000000000000000000000000000000
+			
+			try:
+				import yac_scrypt
+			except:
+				raise Exception("Unable to Load YaCoin yac_scrypt module.")
 		else:
-			raise Exception("Unknown algo, only doublesha and scrypt supported.")
+			raise Exception("Unknown algo, only doublesha, scrypt and scryptn supported.")
 	
 
 def show_message(msg):
@@ -64,6 +72,8 @@ def PoW(b):
 	global hashing_algo, ltc_scrypt
 	if hashing_algo == 'doublesha':
 		return hashlib.sha256(hashlib.sha256(b).digest()).digest()
+	elif hashing_algo == 'scryptn':
+		return yac_scrypt.getPoWHash(b)
 	else:
 		return ltc_scrypt.getPoWHash(b)
 
