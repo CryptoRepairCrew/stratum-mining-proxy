@@ -29,8 +29,10 @@ cd stratum-mining-proxy
 # This will upgrade setuptools package
 sudo python distribute_setup.py
 
-# Build and install LTC scrypt extension
-cd litecoin_scrypt
+# Build and install YAC scryptn extension
+git clone https://github.com/cryptoculture/yac_scrypt/
+cd yac_scrypt
+edit scryptmodule.c and edit chainstart and n settings
 sudo python setup.py install
 cd ..
 
@@ -40,7 +42,7 @@ sudo python setup.py develop
 
 You can start the Stratum proxy by typing ```./mining_proxy.py``` in the terminal window. Using default settings, it connects to Itzod's mining pool.
 
-Also you have ability to start Stratum/LTC proxy by typing  ```./mining-proxy.py -pa scrypt```. Using default settings, it connects to LTCMine mining pool.
+Also you have ability to start Stratum/YAC proxy by typing  ```./mining-proxy.py -pa scryptn```. Using default settings, it connects to LTCMine mining pool.
 
 If you want to connect to another pool or change other proxy settings, type ```./mining_proxy.py --help```.
 
